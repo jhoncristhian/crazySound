@@ -12,8 +12,15 @@
     <h1>Download Audio from YouTube</h1>
     <form id="download-form">
         <input type="text" id="url" placeholder="Enter YouTube URL" required>
-        <button type="submit">Download</button>
+        <button id="convert-button" type="submit">Convert</button>
     </form>
+
+    <!-- Círculo de carga -->
+    <div id="loading" class="loading-spinner" style="display: none;"></div>
+
+    <!-- Botón de descarga -->
+    <button id="download-button" style="display: none;">Download</button>
+
     <script src="js/script.js"></script>
 </body>
 

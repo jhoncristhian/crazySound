@@ -5,14 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "author": "",
+  "author": "jhoncristhian",
   "license": "ISC",
   "keywords": [],
   "dependencies": {
     "express": "^4.19.2",
     "lamejs": "^1.2.1",
     "youtube-dl-exec": "^3.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEBM to MP3 Converter</title>
+    <style>
+        #loading {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Convert WEBM to MP3</h1>
+    <input type="file" id="webmInput" accept=".webm">
+    <button id="convertButton">Convert to MP3</button>
+    <div id="loading">Converting... <img src="https://i.imgur.com/LLXaV2c.gif" alt="Loading" width="20"></div>
+    <a id="downloadLink" style="display:none;">Download MP3</a>
+
+    <script src="lame.min.js"></script>
+    <script>
+        document.getElementById('convertButton').addEventListener('click', async () => {
+            const inputFile = document.getElementById('webmInput').files[0];
+            if (!inputFile) {
+                alert("Please select a WEBM file first.");
+                return;
+            }
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('downloadLink').style.display = 'none';
+
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const reader = new FileReader();
+
+            reader.onload = async function (event) {
+                const arrayBuffer = event.target.result;
+                const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+                const mp3Blob = await encodeMP3(audioBuffer);
+
+                const mp3Url = URL.createObjectURL(mp3Blob);
+                const downloadLink = document.getElementById('downloadLink');
+                downloadLink.href = mp3Url;
+                downloadLink.download = 'output.mp3';
+                downloadLink.style.display = 'block';
+                downloadLink.textContent = 'Download MP3';
+
+                document.getElementById('loading').style.display = 'none';
+            };
+
+            reader.readAsArrayBuffer(inputFile);
+        });
+
+        async function encodeMP3(audioBuffer) {
+            const numChannels = audioBuffer.numberOfChannels;
+            const sampleRate = audioBuffer.sampleRate;
+            const mp3Encoder = new lamejs.Mp3Encoder(numChannels, sampleRate, 128);
+            const mp3Data = [];
+            const maxSamples = 1152;
+
+            const samples = [];
+            for (let channel = 0; channel < numChannels; channel++) {
+                samples.push(audioBuffer.getChannelData(channel));
+            }
+
+            for (let i = 0; i < samples[0].length; i += maxSamples) {
+                const leftChunk = convertTo16Bit(samples[0].subarray(i, i + maxSamples));
+                const rightChunk = numChannels > 1 ? convertTo16Bit(samples[1].subarray(i, i + maxSamples)) : leftChunk;
+                const mp3buf = mp3Encoder.encodeBuffer(leftChunk, rightChunk);
+                if (mp3buf.length > 0) {
+                    mp3Data.push(mp3buf);
+                }
+            }
+
+            const mp3buf = mp3Encoder.flush();
+            if (mp3buf.length > 0) {
+                mp3Data.push(mp3buf);
+            }
+
+            return new Blob(mp3Data, { type: 'audio/mp3' });
+        }
+
+        function convertTo16Bit(samples) {
+            const buffer = new Int16Array(samples.length);
+            for (let i = 0; i < samples.length; i++) {
+                buffer[i] = Math.max(-1, Math.min(1, samples[i])) * 0x7FFF;
+            }
+            return buffer;
+        }
+    </script>
+</body>
+
+</html>

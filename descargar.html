@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar Archivo</title>
+</head>
+
+<body>
+    <h1>Descargar Archivo</h1>
+    <script>
+        // URL del archivo que deseas descargar
+        const fileUrl = 'http://localhost:3000/music/archivo.txt';
+
+        // Crear un enlace invisible para la descarga
+        const link = document.createElement('a');
+        link.href = fileUrl;
+        link.download = '';  // Esto indica que queremos que el archivo se descargue en lugar de abrirse en el navegador
+
+        // Añadir el enlace al DOM (necesario para algunos navegadores)
+        document.body.appendChild(link);
+
+        // Simular un clic en el enlace para iniciar la descarga
+        link.click();
+
+        // Opcional: Eliminar el enlace del DOM
+        document.body.removeChild(link);
+    </script>
+</body>
+
+</html>
