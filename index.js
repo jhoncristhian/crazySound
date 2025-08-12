@@ -67,10 +67,12 @@ app.get("/save2", async (req, res) => {
 
     // Ejecutar youtube-dl-exec para descargar solo el audio y guardarlo como mp3
     await ytdl(videoUrl, {
-      extractAudio: true,
-      audioFormat: "m4a",
-      output: outputFilePath, // Guardar directamente en la ruta especificada
-    });
+    extractAudio: true,
+    audioFormat: "m4a",
+    format: "bestaudio[ext=m4a]",
+    output: outputFilePath,
+    verbose: true
+  });
     resetDeleteTimer(folderPath);
     return res.json({
       message: "El archivo de audio ha sido generado con éxito.",
