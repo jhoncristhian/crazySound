@@ -9,17 +9,19 @@
 </head>
 
 <body>
-    <h1>Download Audio from YouTube</h1>
-    <form id="download-form">
-        <input type="text" id="url" placeholder="Enter YouTube URL" required>
-        <button id="convert-button" type="submit">Convert</button>
-    </form>
+    <div class="container">
+        <h1>🎵 CrazySound</h1>
+        <form id="download-form">
+            <input type="text" id="url" placeholder="Enter YouTube URL" required>
+            <button id="convert-button" type="submit">Convert</button>
+        </form>
 
-    <!-- Círculo de carga -->
-    <div id="loading" class="loading-spinner" style="display: none;"></div>
+        <!-- Círculo de carga -->
+        <div id="loading" class="loading-spinner" style="display: none;"></div>
 
-    <!-- Botón de descarga -->
-    <button id="download-button" style="display: none;">Download</button>
+        <!-- Botón de descarga -->
+        <button id="download-button" class="download-btn" style="display: none;">Download</button>
+    </div>
 
     <script src="js/script.js"></script>
 </body>

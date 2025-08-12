@@ -1,39 +1,88 @@
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+/* Fuente moderna y reset básico */
+* {
   margin: 0;
-  background-color: rgb(46, 45, 45);
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
   color: white;
 }
 
+/* Contenedor principal */
+.container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Título */
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
+/* Input */
 input {
-  margin-bottom: 10px;
-  padding: 8px;
-  width: 300px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
 }
 
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Botones */
 button {
-  padding: 10px 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #ff4d4d;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
 }
 
-/* Estilo del círculo de carga */
+button:hover {
+  background: #ff6666;
+  transform: translateY(-2px);
+}
+
+/* Botón de descarga */
+.download-btn {
+  margin-top: 1rem;
+  background: #4cafef;
+}
+
+.download-btn:hover {
+  background: #6fc4ff;
+}
+
+/* Spinner de carga */
 .loading-spinner {
-  border: 8px solid rgba(255, 255, 255, 0.3);
-  border-top: 8px solid white;
+  margin: 1rem auto;
+  border: 6px solid rgba(255, 255, 255, 0.2);
+  border-top: 6px solid white;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -41,10 +90,21 @@ button {
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsividad */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem;
   }
-  100% {
-    transform: rotate(360deg);
+  
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  input, button {
+    font-size: 0.9rem;
   }
 }
