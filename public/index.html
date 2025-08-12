@@ -6,24 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CrazySound</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
-    <div class="container">
-        <h1>🎵 CrazySound</h1>
-        <form id="download-form">
-            <input type="text" id="url" placeholder="Enter YouTube URL" required>
-            <button id="convert-button" type="submit">Convert</button>
-        </form>
+    <main>
+        <div class="container">
+            <h1>🎵 CrazySound</h1>
+            <form id="download-form">
+                <input type="text" id="url" placeholder="Pega aquí el enlace de YouTube" required>
+                <button id="convert-button" type="submit">Convertir</button>
+            </form>
 
-        <!-- Círculo de carga -->
-        <div id="loading" class="loading-spinner" style="display: none;"></div>
+            <div id="loading" class="loading-spinner" style="display: none;"></div>
 
-        <!-- Botón de descarga -->
-        <button id="download-button" class="download-btn" style="display: none;">Download</button>
-    </div>
+            <button id="download-button" class="download-btn" style="display: none;">Descargar</button>
+        </div>
+    </main>
 
-    <script src="js/script.js"></script>
+    <footer>
+        <p>© 2025 Jhon Cristhian Parco</p>
+        <div class="social-links">
+            <a href="https://github.com/jhoncristhian" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/jhon-cristhian-parco-llantoy-b7758b304" target="_blank"><i
+                    class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+     <script src="js/script.js"></script>
 </body>
 
 </html>
